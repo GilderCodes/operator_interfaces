@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>operator_interfaces</name>
+  <version>0.0.1</version>
+  <description>The operator_interfaces package</description>
+
+  <maintainer email="your_email@example.com">Your Name</maintainer>
+  <license>BSD</license>
+
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+
+  <!-- If you use any other ROS packages, list them here -->
+  <!-- <depend>some_other_package</depend> -->
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Export dependencies to other packages -->
+  <export>
+    <roscpp_plugins />
+  </export>
+</package>
