@@ -1,21 +1,25 @@
 #!/usr/bin/env python3
 
 import rospy
-from std_msgs.msg import Int32
+from std_msgs.msg import Float32MultiArray
 import os
 
 class ArucoSubscriber:
     def __init__(self):
         self.last_detected_id = None
-        rospy.Subscriber('/aruco_id', Int32, self.aruco_callback)
+        # Subscribe to the '/aruco_detection' topic of type Float32MultiArray
+        rospy.Subscriber('/aruco_detection', Float32MultiArray, self.aruco_callback)
         rospy.loginfo("Aruco Subscriber Node Started")
 
     def aruco_callback(self, data):
-        current_id = data.data
+        # The first element in the data array is the marker ID, the rest are corner coordinates
+        current_id = int(data.data[0])
+        corners = data.data[1:]
 
         # Check if the detected ID is different from the last detected ID
         if current_id != self.last_detected_id:
             rospy.loginfo(f"New Aruco ID detected: {current_id}")
+            rospy.loginfo(f"Corners: {corners}")  # Log the corner coordinates
             self.speak_aruco_id(current_id)
             self.last_detected_id = current_id
 
