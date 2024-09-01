@@ -17,6 +17,6 @@ include_directories(
 
 ## Install Python scripts
 catkin_install_python(PROGRAMS
-  scripts/aruco_audio.py
+  scripts/aruco_audio.py scripts/speaker.py scripts/roi_audio.py scripts/audio.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
