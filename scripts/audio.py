@@ -44,9 +44,21 @@ class MultiTopicSubscriber:
     def roi_callback(self, data):
         """Callback for the '/roi_detection' topic."""
         # The first element in the data array is the ROI ID or number
-        roi_id = int(data.data[0])
-        rospy.loginfo(f"New ROI ID detected: {roi_id}")
-        self.queue_message(f"ROI Number {roi_id} Identified")
+        roi_id = (data.data[0])
+
+        if roi_id == 0.1:
+            label = "Backpack"
+        elif roi_id == 0.2:
+            label = "Human"
+        elif roi_id == 0.3:
+            label = "Drone"
+        elif roi_id == 0.4:
+            label = "Phone"
+        else:
+            label = "Unknown"
+            
+        rospy.loginfo(f"New ROI ID detected: {label}")
+        self.queue_message(f"{label} Identified")
 
     def speak_callback(self, data):
         """Callback for the '/speak' topic."""
