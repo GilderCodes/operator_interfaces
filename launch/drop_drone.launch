@@ -1,3 +1,8 @@
 <launch>
-  <node pkg="rostopic" type="rostopic" name="payload_publisher" args="pub /payload_deployment std_msgs/String '{data: \"drop_drone\"}'" output="screen" />
+  <node pkg="rostopic" type="rostopic" name="payload_publisher" 
+        args="pub -1 /payload_deployment std_msgs/String '{data: drop_drone}'" 
+        output="screen" />
 </launch>
+
+
+

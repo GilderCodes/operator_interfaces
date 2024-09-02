@@ -44,15 +44,16 @@ class MultiTopicSubscriber:
     def roi_callback(self, data):
         """Callback for the '/roi_detection' topic."""
         # The first element in the data array is the ROI ID or number
-        roi_id = (data.data[0])
+        roi_id = int(data.data[0]*10)
+        rospy.loginfo(f"ID: {roi_id}")
 
-        if roi_id == 0.1:
+        if roi_id == 1:
             label = "Backpack"
-        elif roi_id == 0.2:
+        elif roi_id == 2:
             label = "Human"
-        elif roi_id == 0.3:
+        elif roi_id == 3:
             label = "Drone"
-        elif roi_id == 0.4:
+        elif roi_id == 4:
             label = "Phone"
         else:
             label = "Unknown"
